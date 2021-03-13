@@ -1,0 +1,21 @@
+{
+  "name": "sekai-data-analyse",
+  "version": "1.0.0",
+  "description": "Data analysing for game Project SEKAI.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xfl03/SekaiDataAnalyse.git"
+  },
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xfl03",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@types/node": "^14.14.34"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
