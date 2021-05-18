@@ -1,4 +1,35 @@
-import {EventRankingRewardRange} from "./masterDataSubStructs";
+import {
+    CardParameter,
+    EventRankingRewardRange,
+    MasterLessonAchieveResource,
+    SpecialTrainingCost
+} from "./masterDataSubStructs";
+
+/**
+ * 卡牌
+ * cards.json
+ */
+export interface Card {
+    id: number;
+    seq: number;
+    characterId: number;
+    rarity: number;
+    specialTrainingPower1BonusFixed: number;
+    specialTrainingPower2BonusFixed: number;
+    specialTrainingPower3BonusFixed: number;
+    attr: string;
+    supportUnit: string;
+    skillId: number;
+    cardSkillName: string;
+    prefix: string;
+    assetbundleName: string;
+    gachaPhrase: string;
+    flavorText: string;
+    releaseAt: number;
+    cardParameters: CardParameter[];
+    specialTrainingCosts: SpecialTrainingCost[];
+    masterLessonAchieveResources: MasterLessonAchieveResource[];
+}
 
 /**
  * 活动

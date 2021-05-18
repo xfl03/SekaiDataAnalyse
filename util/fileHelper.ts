@@ -1,7 +1,8 @@
-import {Event, EventDeckBonus, GameCharacter, GameCharacterUnit, UnitProfile} from "./masterDataStructs";
+import {Card, Event, EventDeckBonus, GameCharacter, GameCharacterUnit, UnitProfile} from "./masterDataStructs";
 import {appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync} from "fs";
 
-export function parseMasterData<T extends Event |
+export function parseMasterData<T extends Card|
+    Event |
     EventDeckBonus |
     GameCharacter |
     GameCharacterUnit |

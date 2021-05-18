@@ -1,10 +1,10 @@
 import {parseMasterData, saveCsv} from "./util/fileHelper";
 import {Event, EventDeckBonus, GameCharacter, GameCharacterUnit, UnitProfile} from "./util/masterDataStructs";
+import {getCharName, getCharUnit, getUnitName} from "./util/printHelper";
 
 const events = parseMasterData<Event>("events");
 const eventBonuses = parseMasterData<EventDeckBonus>("eventDeckBonuses");
 const characterUnits = parseMasterData<GameCharacterUnit>("gameCharacterUnits");
-const characters = parseMasterData<GameCharacter>("gameCharacters");
 const units = parseMasterData<UnitProfile>("unitProfiles");
 
 const characterCounter = Array(26).fill(0).map((it, i) => {
@@ -22,6 +22,8 @@ const unitCounter = Array(6).fill(0).map((it, i) => {
 const originPiaproCounter = [0, 0];
 const boxMixCounter = [0, 0];
 
+console.log(`Last event:${events[events.length - 1].id}`)
+
 eventBonuses
     .filter(it => it.cardAttr === undefined)
     .forEach(bonus => {
@@ -38,14 +40,13 @@ eventBonuses
 events.forEach(e => {
     let units0 = eventBonuses
         .filter(it => it.cardAttr === undefined && it.eventId === e.id)
-        .map(bonus => characterUnits.find(it => it.id === bonus.gameCharacterUnitId).unit)
+        .map(bonus => getCharUnit(bonus.gameCharacterUnitId))
     let unitSet = new Set(units0)
     boxMixCounter[Math.min(2, unitSet.size) - 1]++;
 
-
+    //Box Event
     if (unitSet.size === 1) {
-        const unit = units.find(it => it.unit === units0[0]);
-        console.log(`${e.id} ${unit.unitName}`);
+        console.log(`${e.id} ${getUnitName(units0[0])}`);
         if (boxMixCounter[0] % 5 === 0) console.log();
     }
 })
@@ -53,7 +54,8 @@ events.forEach(e => {
 events.forEach(e => {
     let bonus = eventBonuses
         .find(it => it.gameCharacterUnitId === undefined && it.eventId === e.id)
-    console.log(bonus.cardAttr)
+    console.log(`${e.id} ${bonus.cardAttr}`)
+    if (e.id % 5 === 0) console.log();
 })
 
 const outCsv = [];
@@ -61,8 +63,7 @@ const outCsv = [];
 characterCounter
     .sort((a, b) => a.count === b.count ? a.gameCharacterId - b.gameCharacterId : b.count - a.count)
     .forEach(counter => {
-        const character = characters.find(it => it.id === counter.gameCharacterId);
-        const outArr = [`${character.firstName === undefined ? '' : character.firstName}${character.givenName}`, `${counter.count}`];
+        const outArr = [getCharName(counter.gameCharacterId), `${counter.count}`];
         outCsv.push(outArr);
         console.log(`${outArr[0]} ${outArr[1]}`);
     })
@@ -72,8 +73,7 @@ console.log();
 unitCounter
     .sort((a, b) => b.count - a.count)
     .forEach(counter => {
-        const unit = units.find(it => it.unit === counter.unit);
-        const outArr = [`${unit.unitName}`, `${counter.count}`];
+        const outArr = [getUnitName(counter.unit), `${counter.count}`];
         outCsv.push(outArr);
         console.log(`${outArr[0]} ${outArr[1]}`);
     })
