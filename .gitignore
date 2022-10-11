@@ -2,3 +2,4 @@ node_modules
 sekai-master-db-diff
 metas.json
 out
+.DS_Store

@@ -39,3 +39,12 @@ export interface MasterLessonAchieveResource {
     masterRank: number;
     resources: any[];
 }
+
+export interface MusicVocalCharacter {
+    id: number;
+    musicId: number;
+    musicVocalId: number;
+    characterType: string;
+    characterId: number;
+    seq: number;
+}

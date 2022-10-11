@@ -2,8 +2,20 @@ import {
     CardParameter,
     EventRankingRewardRange,
     MasterLessonAchieveResource,
+    MusicVocalCharacter,
     SpecialTrainingCost
 } from "./masterDataSubStructs";
+
+/**
+ * 区域对话
+ * actionSets.json
+ */
+export interface ActionSet {
+    id: number;
+    areaId: number;
+    scriptId: string;
+    characterIds: Array<number>;
+}
 
 /**
  * 卡牌
@@ -13,7 +25,7 @@ export interface Card {
     id: number;
     seq: number;
     characterId: number;
-    rarity: number;
+    cardRarityType: string;
     specialTrainingPower1BonusFixed: number;
     specialTrainingPower2BonusFixed: number;
     specialTrainingPower3BonusFixed: number;
@@ -29,6 +41,29 @@ export interface Card {
     cardParameters: CardParameter[];
     specialTrainingCosts: SpecialTrainingCost[];
     masterLessonAchieveResources: MasterLessonAchieveResource[];
+}
+
+/**
+ * 卡牌稀有度
+ * cardRarities.json
+ */
+export interface CardRarity {
+    cardRarityType: string;
+    seq: number;
+    maxLevel: number;
+    maxSkillLevel: number;
+}
+
+/**
+ * 角色Live 2D
+ * character2ds.json
+ */
+export interface Character2d {
+    id: number;
+    characterType: string;
+    characterId: number;
+    unit: string;
+    assetName: string;
 }
 
 /**
@@ -50,6 +85,7 @@ export interface Event {
     virtualLiveId: number;
     eventRankingRewardRanges: EventRankingRewardRange[];
 }
+
 /**
  * 活动加成
  * eventDeckBonuses.json
@@ -102,6 +138,28 @@ export interface GameCharacterUnit {
     skinColorCode: string;
     skinShadowColorCode1: string;
     skinShadowColorCode2: string;
+}
+
+export interface MusicVocal {
+    id: number;
+    musicId: number;
+    musicVocalType: string;
+    seq: number;
+    releaseConditionId: number;
+    caption: string;
+    characters: Array<MusicVocalCharacter>;
+    assetbundleName: string;
+}
+
+export interface Stamp {
+    id: number;
+    stampType: string;
+    seq: number;
+    name: string;
+    assetbundleName: string;
+    balloonAssetbundleName: string;
+    characterId1: number;
+    gameCharacterUnitId: number;
 }
 
 /**
