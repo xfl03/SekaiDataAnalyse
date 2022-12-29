@@ -27,10 +27,12 @@ export interface Cost {
     quantity: number;
 }
 
-export interface SpecialTrainingCost {
-    cardId: number;
+export interface LiveMissionReward {
+    id: number;
+    missionType: string;
+    missionId: number;
     seq: number;
-    cost: Cost;
+    resourceBoxId: number;
 }
 
 export interface MasterLessonAchieveResource {
@@ -47,4 +49,20 @@ export interface MusicVocalCharacter {
     characterType: string;
     characterId: number;
     seq: number;
+}
+
+export interface ResourceBoxDetail {
+    resourceBoxPurpose: string;
+    resourceBoxId: number;
+    seq: number;
+    resourceType: string;
+    resourceId: number;
+    resourceLevel: number;
+    resourceQuantity: number;
+}
+
+export interface SpecialTrainingCost {
+    cardId: number;
+    seq: number;
+    cost: Cost;
 }

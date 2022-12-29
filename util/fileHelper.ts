@@ -1,18 +1,18 @@
-import { ActionSet, Card, CardRarity, Character2d, Event, EventDeckBonus, GameCharacter, GameCharacterUnit, MusicVocal, Stamp, UnitProfile } from "./masterDataStructs";
+import { ActionSet, BoostItem, Card, CardRarity, Character2d, Event, EventDeckBonus, GameCharacter, GameCharacterUnit, LiveMission, Material, MusicVocal, ResourceBox, Stamp, UnitProfile } from "./masterDataStructs";
 import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { MusicMeta } from "./musicMetaStruct";
 
-export function parseMasterData<T extends ActionSet | Card | CardRarity | Character2d |
+export function parseMasterData<T extends ActionSet | BoostItem | Card | CardRarity | Character2d |
     Event |
     EventDeckBonus |
     GameCharacter |
-    GameCharacterUnit | MusicVocal | Stamp |
+    GameCharacterUnit | LiveMission | Material | MusicVocal | ResourceBox | Stamp |
     UnitProfile>(name: string): T[] {
     return JSON.parse(readFileSync(`../sekai-master-db-diff/${name}.json`, 'utf8')) as T[];
 }
 
 export function parseMusicMeta(): MusicMeta[] {
-    return JSON.parse(readFileSync(`../SekaiMusicMeta/metas.json`, 'utf8')) as MusicMeta[];
+    return JSON.parse(readFileSync(`../SekaiMusicMeta/music_metas.json`, 'utf8')) as MusicMeta[];
 }
 
 export function saveJson(name: string, data: Object) {

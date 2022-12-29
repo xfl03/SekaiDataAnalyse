@@ -1,8 +1,10 @@
 import {
     CardParameter,
     EventRankingRewardRange,
+    LiveMissionReward,
     MasterLessonAchieveResource,
     MusicVocalCharacter,
+    ResourceBoxDetail,
     SpecialTrainingCost
 } from "./masterDataSubStructs";
 
@@ -15,6 +17,15 @@ export interface ActionSet {
     areaId: number;
     scriptId: string;
     characterIds: Array<number>;
+}
+
+export interface BoostItem {
+    id: number;
+    seq: number;
+    name: string;
+    recoveryValue: number;
+    assetBundleName: string;
+    flavorText: string;
 }
 
 /**
@@ -140,6 +151,22 @@ export interface GameCharacterUnit {
     skinShadowColorCode2: string;
 }
 
+export interface LiveMission {
+    id: number;
+    liveMissionPeriodId: number;
+    liveMissionType: string;
+    requirement: number;
+    rewards: LiveMissionReward[];
+}
+
+export interface Material{
+    id: number;
+    seq: number;
+    name: string;
+    flavorText: string;
+    materialType: string;
+}
+
 export interface MusicVocal {
     id: number;
     musicId: number;
@@ -149,6 +176,14 @@ export interface MusicVocal {
     caption: string;
     characters: Array<MusicVocalCharacter>;
     assetbundleName: string;
+}
+
+export interface ResourceBox {
+    resourceBoxPurpose: string;
+    id: number;
+    resourceBoxType: string;
+    description: string;
+    details: ResourceBoxDetail[];
 }
 
 export interface Stamp {
